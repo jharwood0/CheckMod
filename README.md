@@ -5,12 +5,12 @@ A bash script for interpreting chmod values
 
 Usage
 ========
-> checkmod.sh XXX
+> $ checkmod.sh XXX
 
 Installing
 ========
-> sudo ln -s checkmod.sh /usr/bin/checkmod
+> $ sudo ln -s checkmod.sh /usr/bin/checkmod
 
-> chmod 755 checkmod.sh
+> $ chmod 755 checkmod.sh
 
-> checkmod 777
+> $ checkmod 777
