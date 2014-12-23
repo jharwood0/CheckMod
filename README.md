@@ -10,5 +10,7 @@ Usage
 Installing
 ========
 > sudo ln -s checkmod.sh /usr/bin/checkmod
+
 > chmod 755 checkmod.sh
+
 > checkmod 777
