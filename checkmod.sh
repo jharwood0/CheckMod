@@ -7,26 +7,26 @@ D2B=({0..1}{0..1}{0..1})
 # check for an argument
 if [ -z $1 ]
 then
-	echo "Usage: $0 <chmod value>" >&2; exit 1
+	printf "Usage: $0 <chmod value>\n" >&2; exit 1
 fi
 
 # check if it's a number
 re='^[0-9]+$'
 if ! [[ $1 =~ $re ]]
 then
-	echo "error: Not a number" >&2; exit 1
+	printf "error: Not a number\n" >&2; exit 1
 fi
 
 # check if it is a valid chmod value 
 if [ ${#1} != 3 ]
 then
-	echo "not Valid!" >&2; exit 1
+	printf "not Valid!\n" >&2; exit 1
 fi
 
 # final validity check
 if [ "${1:0:1}" -gt 7 ] || [ "${1:1:1}" -gt 7 ] || [ "${1:2:1}" -gt 7 ]
 then
-	echo "Invalid chmod value" >&2; exit 1
+	printf "Invalid chmod value\n" >&2; exit 1
 fi
 
 #X--
