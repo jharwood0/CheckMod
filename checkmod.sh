@@ -1,11 +1,10 @@
 #!/bin/bash
-# Programmed By Josh Harwood
-
+# Josh Harwood
 
 #converting to 3 bit binary
 D2B=({0..1}{0..1}{0..1})
 
-# check for a number
+# check for an argument
 if [ -z $1 ]
 then
 	echo "Usage: $0 <chmod value>" >&2; exit 1
@@ -29,6 +28,7 @@ if [ "${1:0:1}" -gt 7 ] || [ "${1:1:1}" -gt 7 ] || [ "${1:2:1}" -gt 7 ]
 then
 	echo "Invalid chmod value" >&2; exit 1
 fi
+
 #X--
 first=${1:0:1}
 #-X-
@@ -41,14 +41,20 @@ first=${D2B[$first]}
 second=${D2B[$second]}
 third=${D2B[$third]}
 
-#for formatting:
-underline=`tput smul`
-nounderline=`tput rmul`
-bold=`tput bold`
-normal=`tput sgr0`
+#printf table
+divider===============================
+divider=$divider$divider
 
-#create table with binary outputted
-echo -e "\t|\t${bold}Read${normal}\t|\t${bold}Write${normal}\t|\t${bold}Execute${normal}\t|"
-echo -e "${bold}Owner${normal} \t|\t${first:0:1}\t|\t${first:1:1}\t|\t${first:2:1}\t|"
-echo -e "${bold}Group${normal} \t|\t${second:0:1}\t|\t${second:1:1}\t|\t${second:2:1}\t|"
-echo -e "${bold}Other${normal} \t|\t${third:0:1}\t|\t${third:1:1}\t|\t${third:2:1}\t|"
+header="\n %12s %7s %9s\n"
+format="%0s %5s %7s %7s\n"
+
+width=33
+
+printf "$header" "Read" "Write" "Execute"
+printf "%$width.${width}s\n" "$divider"
+
+printf "$format" \
+Owner ${first:0:1} ${first:1:1} ${first:2:1} \
+Group ${second:0:1} ${second:1:1} ${second:2:1} \
+Other ${third:0:1} ${third:1:1} ${third:2:1} 
+printf "\n"
